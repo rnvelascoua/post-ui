@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PostCard from "../components/PostCard";
 import PostForm from "../components/PostForm";
+import { Box, Container, Typography, CircularProgress } from "@mui/material";
 
 const API_URL = "http://localhost:8080/api/posts"; // Update with your API URL
 
@@ -36,15 +37,32 @@ const NewsFeed = () => {
   }, []);
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h1>News Feed</h1>
-      <PostForm onAddPost={handleAddPost} />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        posts.map((post) => <PostCard key={post.id} post={post} />)
-      )}
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        minHeight: "100vh",
+        width: "100%",
+        backgroundColor: "#f5f5f5",
+        padding: 2,
+      }}
+    >
+      <Container maxWidth="md">
+        <Typography variant="h4" component="h1" sx={{ marginBottom: 2, textAlign: "center" }}>
+          News Feed
+        </Typography>
+        <PostForm onAddPost={handleAddPost} />
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          posts.map((post) => <PostCard key={post.id} post={post} />)
+        )}
+      </Container>
+    </Box>
   );
 };
 
