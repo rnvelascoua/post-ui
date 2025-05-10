@@ -4,7 +4,7 @@ import PostCard from "../components/PostCard";
 import PostForm from "../components/PostForm";
 import { Box, Container, Typography, CircularProgress } from "@mui/material";
 
-const API_URL = "http://localhost:8080/api/posts"; // Update with your API URL
+const API_URL = "https://post-api-9hy1.onrender.com/api/posts"; // Update with your API URL
 
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
